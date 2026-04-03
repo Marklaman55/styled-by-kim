@@ -9,7 +9,12 @@ const UserSchema = new mongoose.Schema({
 const BookingSchema = new mongoose.Schema({
   name: { type: String, required: true },
 <<<<<<< HEAD
-  phone: { type: String, required: true, unique:true, sparse:true },
+phone: {
+  type: String,
+  required: true,
+  unique: true,
+  sparse: true
+};
 =======
   phone: { type: String, required: true },
 >>>>>>> 6916f2997a62f17f1de43054e23bc778a6bc2a10
