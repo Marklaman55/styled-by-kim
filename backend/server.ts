@@ -619,34 +619,29 @@ async function startServer() {
 
 
 const bootstrapAdmin = async () => {
-  const adminEmail = 'admin@katianistyles.com';
-
-  const existing = await User.findOne({ email: adminEmail });
-
-  if (!existing) {
-    const hashedPassword = await bcrypt.hash('admin123', 10);
-
-    await User.create({
-      email: adminEmail,
-      password: hashedPassword,
-      role: 'admin',
-      phone: undefined // 🔥 IMPORTANT: prevents null insertion
-    });
-
-    console.log('Admin user bootstrapped');
-  }
-};
-
-  const bootstrapAdmin = async () => {
+  try {
     const adminEmail = 'admin@katianistyles.com';
+
     const existing = await User.findOne({ email: adminEmail });
+
     if (!existing) {
       const hashedPassword = await bcrypt.hash('admin123', 10);
-      await User.create({ email: adminEmail, password: hashedPassword });
-      console.log('Admin user bootstrapped');
+
+      await User.create({
+        email: adminEmail,
+        password: hashedPassword,
+        role: 'admin',
+        phone: undefined, // prevents null insertion issues
+      });
+
+      console.log('🔥 Admin user bootstrapped');
+    } else {
+      console.log('✅ Admin already exists');
     }
-  };
-  bootstrapAdmin();
+  } catch (error) {
+    console.error('❌ Bootstrap admin error:', error);
+  }
+};
 
   const PORT_NUM = Number(PORT) || 10000;
   app.listen(PORT_NUM, '0.0.0.0', () => {
