@@ -1,0 +1,5 @@
+{
+  "name": ".katiana.styles",
+  "description": "A premium lash studio booking system with M-Pesa integration and admin management.",
+  "requestFramePermissions": ["camera"]
+}
