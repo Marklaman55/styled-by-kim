@@ -617,6 +617,7 @@ async function startServer() {
     }
   });
 
+<<<<<<< HEAD
 const bootstrapAdmin = async () => {
   const adminEmail = 'admin@katianistyles.com';
 
@@ -635,6 +636,18 @@ const bootstrapAdmin = async () => {
     console.log('Admin user bootstrapped');
   }
 };
+=======
+  const bootstrapAdmin = async () => {
+    const adminEmail = 'admin@katianistyles.com';
+    const existing = await User.findOne({ email: adminEmail });
+    if (!existing) {
+      const hashedPassword = await bcrypt.hash('admin123', 10);
+      await User.create({ email: adminEmail, password: hashedPassword });
+      console.log('Admin user bootstrapped');
+    }
+  };
+  bootstrapAdmin();
+>>>>>>> 6916f2997a62f17f1de43054e23bc778a6bc2a10
 
   const PORT_NUM = Number(PORT) || 10000;
   app.listen(PORT_NUM, '0.0.0.0', () => {
